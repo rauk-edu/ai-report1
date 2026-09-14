@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Kantumruy Pro', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+}
+
+.font-moul {
+  font-family: 'Moul', serif;
+}
+
+.font-battambang {
+  font-family: 'Battambang', sans-serif;
+}
+
+.font-kantumruy {
+  font-family: 'Kantumruy Pro', sans-serif;
+}
+
+/* Print Styles */
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 8mm;
+  }
+
+  body {
+    background-color: white !important;
+    color: black !important;
+    font-size: 11pt !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .print-page-break {
+    page-break-before: always;
+  }
+
+  table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    page-break-inside: auto;
+  }
+
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+
+  td, th {
+    border: 1px solid #1f2937 !important;
+    padding: 4px 6px !important;
+    font-size: 10pt !important;
+  }
+}
