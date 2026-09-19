@@ -40,13 +40,19 @@ export const OfficialPrintView: React.FC<Props> = ({
 }) => {
   const [selectedSectionFilter, setSelectedSectionFilter] = useState<ActivePart>(activePart);
 
-  // Filter sections by selected part
-  const filteredSections = sections.filter((sec) => {
-    if (selectedSectionFilter === 'B') return sec.part === 'B';
-    if (selectedSectionFilter === 'A') return sec.part === 'A';
-    if (selectedSectionFilter === 'STAFF') return false;
-    return true;
-  });
+  // Filter sections by selected part and ensure Part A comes before Part B
+  const filteredSections = sections
+    .filter((sec) => {
+      if (selectedSectionFilter === 'A') return sec.part === 'A';
+      if (selectedSectionFilter === 'B') return sec.part === 'B';
+      if (selectedSectionFilter === 'STAFF') return false;
+      return true;
+    })
+    .sort((a, b) => {
+      if (a.part === 'A' && b.part !== 'A') return -1;
+      if (a.part !== 'A' && b.part === 'A') return 1;
+      return 0;
+    });
 
   const handlePrint = () => {
     window.print();
@@ -98,19 +104,6 @@ export const OfficialPrintView: React.FC<Props> = ({
               </button>
               <button
                 onClick={() => {
-                  setSelectedSectionFilter('B');
-                  onChangePart('B');
-                }}
-                className={`px-2.5 py-1 rounded-md transition-all ${
-                  selectedSectionFilter === 'B'
-                    ? 'bg-sky-600 text-white shadow-xs'
-                    : 'text-slate-300 hover:text-white'
-                }`}
-              >
-                តារាង ខ
-              </button>
-              <button
-                onClick={() => {
                   setSelectedSectionFilter('A');
                   onChangePart('A');
                 }}
@@ -121,6 +114,19 @@ export const OfficialPrintView: React.FC<Props> = ({
                 }`}
               >
                 តារាង ក
+              </button>
+              <button
+                onClick={() => {
+                  setSelectedSectionFilter('B');
+                  onChangePart('B');
+                }}
+                className={`px-2.5 py-1 rounded-md transition-all ${
+                  selectedSectionFilter === 'B'
+                    ? 'bg-sky-600 text-white shadow-xs'
+                    : 'text-slate-300 hover:text-white'
+                }`}
+              >
+                តារាង ខ
               </button>
               <button
                 onClick={() => {

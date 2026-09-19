@@ -14,7 +14,7 @@ import { StaffNominalTable } from './components/StaffNominalTable';
 import { downloadCsv } from './utils/khmerNumerals';
 
 export default function App() {
-  const [activePart, setActivePart] = useState<ActivePart>('B');
+  const [activePart, setActivePart] = useState<ActivePart>('A');
   const [searchQuery, setSearchQuery] = useState('');
   const [useKhmerNumerals, setUseKhmerNumerals] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -99,7 +99,10 @@ export default function App() {
           });
           return recalculateSection({ ...initSec, rows });
         });
-        return updated;
+        return [
+          ...updated.filter((s) => s.part === 'A'),
+          ...updated.filter((s) => s.part === 'B'),
+        ];
       }
     } catch {
       // ignore
@@ -134,13 +137,19 @@ export default function App() {
     }
   }, [sections]);
 
-  // Filter sections by active part
-  const visibleSections = sections.filter((sec) => {
-    if (activePart === 'B') return sec.part === 'B';
-    if (activePart === 'A') return sec.part === 'A';
-    if (activePart === 'STAFF') return false;
-    return true;
-  });
+  // Filter sections by active part (ensuring Part A comes before Part B)
+  const visibleSections = sections
+    .filter((sec) => {
+      if (activePart === 'A') return sec.part === 'A';
+      if (activePart === 'B') return sec.part === 'B';
+      if (activePart === 'STAFF') return false;
+      return true;
+    })
+    .sort((a, b) => {
+      if (a.part === 'A' && b.part !== 'A') return -1;
+      if (a.part !== 'A' && b.part === 'A') return 1;
+      return 0;
+    });
 
   // Filter by search query if any
   const displayedSections = visibleSections.filter((sec) => {

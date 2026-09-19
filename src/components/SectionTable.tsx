@@ -306,30 +306,30 @@ export const SectionTable: React.FC<Props> = ({
                       let columnWidthClass = '';
                       if (formulaCtx) {
                         if (isFormula) {
-                          columnWidthClass = 'w-[60px] min-w-[44px] max-w-[46px]';
+                          columnWidthClass = 'min-w-[48px] text-center';
                         } else if (isDataRow) {
                           const hasLrCol = row.cells.length > formulaCtx.formulaRow.cells.length + 1;
                           if (cellIndex === 0 && hasLrCol) {
                             // Column 0 is ល/រ (No.)
-                            columnWidthClass = 'w-[60px] min-w-[42px] max-w-[48px]';
+                            columnWidthClass = 'min-w-[42px] text-center';
                           } else if (cellIndex === (hasLrCol ? 1 : 0)) {
                             // Grade or school label column
-                            columnWidthClass = 'w-[60px] min-w-[42px] max-w-[48px]';
+                            columnWidthClass = 'min-w-[64px] whitespace-nowrap text-center';
                           } else {
                             // All numeric/formula columns are completely equal!
-                            columnWidthClass = 'w-[60px] min-w-[44px] max-w-[46px]';
+                            columnWidthClass = 'min-w-[48px] text-center';
                           }
                         } else if (isTotal) {
                           if (cellIndex === 0) {
-                            columnWidthClass = 'w-[60px] min-w-[42px] max-w-[42px]';
+                            columnWidthClass = 'min-w-[64px] whitespace-nowrap text-center';
                           } else {
-                            columnWidthClass = 'w-[60px] min-w-[44px] max-w-[46px]';
+                            columnWidthClass = 'min-w-[48px] text-center';
                           }
                         } else if (row.isHeaderRow) {
                           if (cell.text.trim() === 'ល/រ') {
-                            columnWidthClass = 'w-[60px] min-w-[42px] max-w-[48px]';
+                            columnWidthClass = 'min-w-[42px] text-center';
                           } else if (cell.text.trim() === 'ថ្នាក់') {
-                            columnWidthClass = 'w-[60px] min-w-[42px] max-w-[48px]';
+                            columnWidthClass = 'min-w-[64px] whitespace-nowrap text-center';
                           }
                         }
                       }

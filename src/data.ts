@@ -21,7 +21,7 @@ export const INITIAL_SCHOOL_METADATA: SchoolMetadata = {
   "approvalSolarDate": "រោគ  ថ្ងៃទី១៤ ខែកញ្ញា ឆ្នាំ២០២៦"
 };
 
-export const INITIAL_SECTIONS: SectionData[] = [
+const RAW_INITIAL_SECTIONS: SectionData[] = [
   {
     "id": "sec_b_1",
     "part": "B",
@@ -10366,7 +10366,7 @@ export const INITIAL_SECTIONS: SectionData[] = [
             "id": "a_3_r10_c0",
             "text": "សរុប",
             "rowSpan": 1,
-            "colSpan": 2,
+            "colSpan": 1,
             "align": "center",
             "isTh": false,
             "isHeader": false,
@@ -11546,7 +11546,7 @@ export const INITIAL_SECTIONS: SectionData[] = [
             "id": "a_4_r10_c0",
             "text": "សរុប",
             "rowSpan": 1,
-            "colSpan": 2,
+            "colSpan": 1,
             "align": "center",
             "isTh": false,
             "isHeader": false,
@@ -13806,7 +13806,7 @@ export const INITIAL_SECTIONS: SectionData[] = [
             "id": "a_5_r10_c0",
             "text": "សរុប",
             "rowSpan": 1,
-            "colSpan": 2,
+            "colSpan": 1,
             "align": "center",
             "isTh": false,
             "isHeader": false,
@@ -14058,4 +14058,9 @@ export const INITIAL_SECTIONS: SectionData[] = [
     ],
     "summaryNote": "លទ្ធផលតេស្តចុងឆ្នាំក្រោយពេលធ្វើការវាយតម្លៃ"
   }
+];
+
+export const INITIAL_SECTIONS: SectionData[] = [
+  ...RAW_INITIAL_SECTIONS.filter((s) => s.part === 'A'),
+  ...RAW_INITIAL_SECTIONS.filter((s) => s.part === 'B'),
 ];

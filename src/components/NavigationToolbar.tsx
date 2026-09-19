@@ -50,17 +50,6 @@ export const NavigationToolbar: React.FC<Props> = ({
         <div className="flex items-center gap-2 overflow-x-auto pb-1 lg:pb-0">
           <div className="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-semibold shrink-0">
             <button
-              id="tab-part-b"
-              onClick={() => onChangePart('B')}
-              className={`px-3 py-1.5 rounded-lg transition-all ${
-                activePart === 'B'
-                  ? 'bg-sky-700 text-white shadow-xs'
-                  : 'text-slate-700 hover:text-slate-950 hover:bg-slate-200/60'
-              }`}
-            >
-              តារាង ខ (B ៥-១៥)
-            </button>
-            <button
               id="tab-part-a"
               onClick={() => onChangePart('A')}
               className={`px-3 py-1.5 rounded-lg transition-all ${
@@ -70,6 +59,17 @@ export const NavigationToolbar: React.FC<Props> = ({
               }`}
             >
               តារាង ក (A ១-៤)
+            </button>
+            <button
+              id="tab-part-b"
+              onClick={() => onChangePart('B')}
+              className={`px-3 py-1.5 rounded-lg transition-all ${
+                activePart === 'B'
+                  ? 'bg-sky-700 text-white shadow-xs'
+                  : 'text-slate-700 hover:text-slate-950 hover:bg-slate-200/60'
+              }`}
+            >
+              តារាង ខ (B ៥-១៥)
             </button>
             <button
               id="tab-part-staff"
